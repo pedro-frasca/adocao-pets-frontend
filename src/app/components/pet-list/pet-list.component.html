@@ -1,0 +1,25 @@
+<div class="container mx-auto p-8">
+  <h1 class="text-4xl font-bold text-center mb-10 text-gray-700">Pets para Adoção (Angular)</h1>
+
+  <div *ngIf="isLoading" class="text-center">
+    <p>A carregar pets...</p>
+  </div>
+
+  <div *ngIf="error" class="text-center text-red-500 p-4 bg-red-100 rounded">
+    <p>{{ error }}</p>
+  </div>
+
+  <div *ngIf="!isLoading && !error" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+    <div *ngFor="let pet of pets" class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+      <h2 class="text-2xl font-bold text-gray-800 mb-2">{{ pet.nome }}</h2>
+      <p class="text-gray-600 mb-1"><span class="font-semibold">Espécie:</span> {{ pet.animal.nome }}</p>
+      <p class="text-gray-600 mb-4"><span class="font-semibold">Raça:</span> {{ pet.raca.nome }}</p>
+      <span [ngClass]="pet.status === 'disponivel' ? 'bg-green-500' : 'bg-red-500'" 
+            class="px-3 py-1 rounded-full text-white text-sm">
+        {{ pet.status }}
+      </span>
+    </div>
+
+  </div>
+</div>
