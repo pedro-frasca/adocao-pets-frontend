@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+/* Variáveis Globais (Tema Dark) */
+:root {
+  --bg-dark: #0f172a;       /* Fundo Principal */
+  --bg-card: #1e293b;       /* Fundo de Cartões */
+  --primary: #8b5cf6;       /* Roxo Neon */
+  --accent: #ec4899;        /* Rosa Neon */
+  --text-white: #f8fafc;    /* Texto Claro */
+  --text-gray: #94a3b8;     /* Texto Secundário */
+  --success: #10b981;       /* Verde */
+  --danger: #ef4444;        /* Vermelho */
+}
+
+/* Reset Global */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Scrollbar Estilizada */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-card);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}

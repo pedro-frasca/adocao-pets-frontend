@@ -14,7 +14,7 @@ export class PetService {
 
   public getPets(): Observable<any[]> {
     // IMPORTANTE: Obtenha o seu token JWT do Postman após o login
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhZG9jYW8tYXBpIiwic3ViIjoibmljb0BlbWFpbC5jb20iLCJleHAiOjE3NjM0Nzg0NTB9.XimNB0ZuoVImS227FgV0BTtSgUP6p0JDFCAAyzVWuOU"; // <-- SUBSTITUA PELO SEU TOKEN REAL
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhZG9jYW8tYXBpIiwic3ViIjoidGVzdGVAZW1haWwuY29tIiwiZXhwIjoxNzYzNzY5NTMyfQ.yTLmQV277RVwA3FLOItKcuWn-sHlripFOKiHtWH03WA"; // <-- SUBSTITUA PELO SEU TOKEN REAL
 
     // Cria os cabeçalhos de autorização
     const headers = new HttpHeaders({

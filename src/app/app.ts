@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { PetListComponent } from './components/pet-list/pet-list.component'; // 1. Importe o componente
+import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router'; // 1. Importe RouterLinkActive
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    RouterOutlet,
-    PetListComponent // 2. Adicione-o aqui
+    RouterOutlet, 
+    RouterLink, 
+    RouterLinkActive // 2. Adicione aqui na lista de imports do componente
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss'

@@ -1,0 +1,200 @@
+// --- Container Principal ---
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  /* Removemos o background-color daqui para usar o do body */
+}
+
+// --- Cabeçalho da Página ---
+.page-header {
+  text-align: center;
+  margin-bottom: 60px;
+
+  h1 {
+    font-size: 2.5rem;
+    color: var(--text-white);
+    margin-bottom: 10px;
+    font-weight: 800;
+  }
+
+  p {
+    color: var(--text-gray);
+    font-size: 1.1rem;
+  }
+}
+
+// --- Grid Responsiva ---
+.pet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+// --- Cartão do Pet (Versão Dark) ---
+.pet-card {
+  background: var(--bg-card); // Cor escura
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.05); // Borda subtil
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    border-color: rgba(139, 92, 246, 0.3); // Borda roxa ao passar o mouse
+  }
+
+  // Topo do cartão
+  .card-header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+    .avatar {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--primary), darken(#8b5cf6, 10%));
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+    }
+
+    .title-area {
+      h2 {
+        margin: 0;
+        font-size: 1.25rem;
+        color: var(--text-white);
+      }
+      .breed {
+        font-size: 0.9rem;
+        color: var(--text-gray);
+      }
+    }
+  }
+
+  // Meio do cartão
+  .card-body {
+    padding: 20px;
+    flex-grow: 1;
+
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      background: rgba(0, 0, 0, 0.2); // Fundo mais escuro para stats
+      padding: 10px;
+      border-radius: 10px;
+
+      .stat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        .label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-gray); letter-spacing: 0.5px; }
+        .value { font-weight: 600; color: var(--text-white); font-size: 0.95rem; }
+      }
+    }
+
+    .health-box {
+      display: flex;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--text-gray);
+      line-height: 1.4;
+      
+      .icon { font-size: 1.2rem; }
+      p { margin: 0; }
+    }
+  }
+
+  // Fundo do cartão
+  .card-footer {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .status-badge {
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+
+      &.disponivel {
+        background-color: rgba(16, 185, 129, 0.1); // Verde transparente
+        color: #34d399;
+        border: 1px solid rgba(16, 185, 129, 0.2);
+      }
+      
+      &.adotado {
+        background-color: rgba(239, 68, 68, 0.1); // Vermelho transparente
+        color: #f87171;
+        border: 1px solid rgba(239, 68, 68, 0.2);
+      }
+    }
+
+    .btn-adopt {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.3); // Brilho neon
+
+      &:hover:not(:disabled) {
+        background: lighten(#8b5cf6, 5%);
+        box-shadow: 0 0 25px rgba(139, 92, 246, 0.5); // Brilho mais forte
+        transform: translateY(-2px);
+      }
+
+      &:disabled {
+        background: #475569;
+        color: #94a3b8;
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+// --- Estilos de Loading e Erro ---
+.state-message {
+  text-align: center;
+  padding: 40px;
+  font-size: 1.2rem;
+  color: var(--text-gray);
+  
+  &.error { color: var(--danger); }
+  
+  .spinner {
+    margin: 0 auto 20px;
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255,255,255,0.1);
+    border-top: 4px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

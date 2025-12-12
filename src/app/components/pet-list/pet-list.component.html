@@ -1,24 +1,67 @@
-<div class="container mx-auto p-8">
-  <h1 class="text-4xl font-bold text-center mb-10 text-gray-700">Pets para Adoção (Angular)</h1>
+<div class="main-container">
+  
+  <header class="page-header">
+    <h1>🐾 Amigos para Adoção</h1>
+    <p>Encontre o seu novo melhor amigo hoje!</p>
+  </header>
 
-  <div *ngIf="isLoading" class="text-center">
-    <p>A carregar pets...</p>
+  <div *ngIf="isLoading" class="state-message loading">
+    <div class="spinner"></div>
+    <p>A carregar os pets...</p>
   </div>
 
-  <div *ngIf="error" class="text-center text-red-500 p-4 bg-red-100 rounded">
-    <p>{{ error }}</p>
+  <div *ngIf="error" class="state-message error">
+    <p>⚠️ {{ error }}</p>
   </div>
 
-  <div *ngIf="!isLoading && !error" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  <div *ngIf="!isLoading && !error" class="pet-grid">
+    
+    <div *ngFor="let pet of pets" class="pet-card">
+      
+      <div class="card-header">
+        <div class="avatar">
+          {{ pet.nome.charAt(0) }}
+        </div>
+        <div class="title-area">
+          <h2>{{ pet.nome }}</h2>
+          <span class="breed">{{ pet.animal.nome }} • {{ pet.raca.nome }}</span>
+        </div>
+      </div>
 
-    <div *ngFor="let pet of pets" class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
-      <h2 class="text-2xl font-bold text-gray-800 mb-2">{{ pet.nome }}</h2>
-      <p class="text-gray-600 mb-1"><span class="font-semibold">Espécie:</span> {{ pet.animal.nome }}</p>
-      <p class="text-gray-600 mb-4"><span class="font-semibold">Raça:</span> {{ pet.raca.nome }}</p>
-      <span [ngClass]="pet.status === 'disponivel' ? 'bg-green-500' : 'bg-red-500'" 
-            class="px-3 py-1 rounded-full text-white text-sm">
-        {{ pet.status }}
-      </span>
+      <div class="card-body">
+        <div class="stats">
+          <div class="stat-item">
+            <span class="label">Idade</span>
+            <span class="value">{{ pet.idade }} anos</span>
+          </div>
+          <div class="stat-item">
+            <span class="label">Peso</span>
+            <span class="value">{{ pet.peso }}kg</span>
+          </div>
+          <div class="stat-item">
+            <span class="label">Sexo</span>
+            <span class="value">{{ pet.sexo }}</span>
+          </div>
+        </div>
+        
+        <div class="health-box">
+          <span class="icon">🏥</span>
+          <p>{{ pet.saude }}</p>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <span class="status-badge" 
+              [class.disponivel]="pet.status === 'disponivel'"
+              [class.adotado]="pet.status === 'adotado'">
+          {{ pet.status | titlecase }}
+        </span>
+        
+        <button class="btn-adopt" [disabled]="pet.status === 'adotado'">
+          {{ pet.status === 'disponivel' ? 'Quero Adotar!' : 'Indisponível' }}
+        </button>
+      </div>
+
     </div>
 
   </div>
