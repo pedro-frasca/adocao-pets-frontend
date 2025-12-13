@@ -1,13 +1,13 @@
 <div class="main-container">
   
   <header class="page-header">
-    <h1>🐾 Amigos para Adoção</h1>
-    <p>Encontre o seu novo melhor amigo hoje!</p>
+    <h1>🐾 Nossos Amiguinhos</h1>
+    <p>Conheça os pets que estão à espera de um lar.</p>
   </header>
 
-  <div *ngIf="isLoading" class="state-message loading">
+  <div *ngIf="isLoading" class="state-message">
     <div class="spinner"></div>
-    <p>A carregar os pets...</p>
+    <p>A carregar pets da API...</p>
   </div>
 
   <div *ngIf="error" class="state-message error">
@@ -18,14 +18,22 @@
     
     <div *ngFor="let pet of pets" class="pet-card">
       
+      <div class="pet-image-container">
+        <img [src]="pet.fotoUrl" [alt]="'Foto de ' + pet.nome" class="pet-image">
+        <div class="image-overlay"></div>
+      </div>
+
       <div class="card-header">
-        <div class="avatar">
-          {{ pet.nome.charAt(0) }}
-        </div>
         <div class="title-area">
           <h2>{{ pet.nome }}</h2>
-          <span class="breed">{{ pet.animal.nome }} • {{ pet.raca.nome }}</span>
+          <span class="breed">{{ pet.animal?.nome }} • {{ pet.raca?.nome }}</span>
         </div>
+        
+        <span class="status-badge" 
+              [class.disponivel]="pet.status === 'disponivel'"
+              [class.adotado]="pet.status === 'adotado'">
+          {{ pet.status | titlecase }}
+        </span>
       </div>
 
       <div class="card-body">
@@ -46,19 +54,16 @@
         
         <div class="health-box">
           <span class="icon">🏥</span>
-          <p>{{ pet.saude }}</p>
+          <p>{{ pet.saude || 'Informação não disponível' }}</p>
         </div>
       </div>
 
       <div class="card-footer">
-        <span class="status-badge" 
-              [class.disponivel]="pet.status === 'disponivel'"
-              [class.adotado]="pet.status === 'adotado'">
-          {{ pet.status | titlecase }}
-        </span>
-        
-        <button class="btn-adopt" [disabled]="pet.status === 'adotado'">
-          {{ pet.status === 'disponivel' ? 'Quero Adotar!' : 'Indisponível' }}
+        <button 
+          class="btn-adopt" 
+          [disabled]="pet.status === 'adotado'"
+          (click)="adotarPet(pet)">
+          {{ pet.status === 'disponivel' ? 'Quero Adotar!' : 'Já Adotado' }}
         </button>
       </div>
 

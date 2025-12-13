@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Pet } from '../models/pet';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class PetService {
 
   public getPets(): Observable<any[]> {
     // IMPORTANTE: Obtenha o seu token JWT do Postman após o login
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhZG9jYW8tYXBpIiwic3ViIjoidGVzdGVAZW1haWwuY29tIiwiZXhwIjoxNzYzNzY5NTMyfQ.yTLmQV277RVwA3FLOItKcuWn-sHlripFOKiHtWH03WA"; // <-- SUBSTITUA PELO SEU TOKEN REAL
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhZG9jYW8tYXBpIiwic3ViIjoidGVzdGVAZW1haWwuY29tIiwiZXhwIjoxNzY1NjY2MjcyfQ.srZUd1XyAgRxO-fVmdK4le61HDffwqyibtwTGzpkgBU"; // <-- SUBSTITUA PELO SEU TOKEN REAL
 
     // Cria os cabeçalhos de autorização
     const headers = new HttpHeaders({
