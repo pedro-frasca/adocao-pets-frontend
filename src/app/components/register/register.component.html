@@ -1,0 +1,32 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Crie sua conta 🐶</h2>
+    <p class="subtitle">Junte-se à comunidade PataConnect</p>
+
+    <form (ngSubmit)="onSubmit()">
+      
+      <div class="form-group">
+        <label>Nome Completo</label>
+        <input type="text" [(ngModel)]="user.nome" name="nome" placeholder="Ex: João Silva" required>
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" [(ngModel)]="user.email" name="email" placeholder="seu@email.com" required>
+      </div>
+
+      <div class="form-group">
+        <label>Senha</label>
+        <input type="password" [(ngModel)]="user.senha" name="senha" placeholder="Mínimo 6 caracteres" required>
+      </div>
+
+      <div *ngIf="errorMessage" class="error-msg">{{ errorMessage }}</div>
+
+      <button type="submit" class="btn-primary">Criar Conta</button>
+    </form>
+
+    <p class="footer-text">
+      Já tem conta? <a routerLink="/login">Faça Login</a>
+    </p>
+  </div>
+</div>

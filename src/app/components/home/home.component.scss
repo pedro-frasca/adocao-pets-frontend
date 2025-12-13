@@ -19,7 +19,7 @@ $text-gray: #94a3b8;
   color: $text-white;
   overflow: hidden; // Para cortar os blobs de fundo
   position: relative;
-  font-family: 'Inter', sans-serif; // Certifique-se de ter uma fonte bonita
+  font-family: 'Inter', sans-serif;
 }
 
 // --- Efeitos de Fundo ---
@@ -196,26 +196,43 @@ $text-gray: #94a3b8;
       position: relative;
       animation: float 6s infinite ease-in-out;
       
-      // Círculo decorativo dentro do card
+      // REMOVIDO: overflow: hidden; para os emojis poderem sair
+
+      // --- ESTILO DA IMAGEM ---
+      .hero-bg-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        opacity: 0.85;
+        border-radius: 30px; // ADICIONADO: Arredonda a imagem diretamente
+      }
+      
+      // Ajuste de camadas (z-index)
       &::before {
         content: '';
         position: absolute;
         inset: 20px;
         border: 2px dashed rgba(255,255,255,0.2);
         border-radius: 20px;
+        z-index: 1;
       }
 
       .emoji-float {
         font-size: 5rem;
         position: absolute;
-        top: -30px;
-        right: -30px;
+        top: -30px;  // Vai ficar para fora
+        right: -30px; // Vai ficar para fora
         animation: bounce 3s infinite;
+        z-index: 2;
         
         &.delay {
           top: auto;
-          bottom: -30px;
-          left: -30px;
+          bottom: -30px; // Vai ficar para fora
+          left: -30px;   // Vai ficar para fora
           right: auto;
           animation-delay: 1.5s;
           font-size: 4rem;
@@ -231,6 +248,7 @@ $text-gray: #94a3b8;
         padding: 0.8rem 1.5rem;
         border-radius: 20px;
         white-space: nowrap;
+        z-index: 2;
         span { font-weight: 600; color: $accent; }
       }
     }

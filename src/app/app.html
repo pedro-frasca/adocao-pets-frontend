@@ -5,6 +5,20 @@
     <div class="nav-links">
       <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
       <a routerLink="/pets" routerLinkActive="active">Pets Disponíveis</a>
+
+      <div class="auth-buttons">
+        
+        <ng-container *ngIf="!authService.isLoggedIn()">
+          <a routerLink="/login" class="btn-login">Entrar</a>
+          <a routerLink="/register" class="btn-register">Criar Conta</a>
+        </ng-container>
+
+        <ng-container *ngIf="authService.isLoggedIn()">
+          <span class="user-greeting">Olá, {{ authService.getUserName() }}! 👋</span>
+          <button (click)="logout()" class="btn-logout">Sair</button>
+        </ng-container>
+
+      </div>
     </div>
   </div>
 </nav>
